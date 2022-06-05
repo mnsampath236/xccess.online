@@ -33,40 +33,50 @@
 
   gtag('config', 'G-9QVG87D4TQ');
 </script>
-    <style >
-    #mask {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 9000;
-    background-color: #000000;
-    display: none;
+    <style media="screen">
+    	*,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
-#boxes .window {
+
+.popup{
+    background-color: #ffffff;
+    width: 690px;
+    padding: 30px 40px;
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 440px;
-    height: 200px;
-    display: none;
-    z-index: 9999;
-    padding: 20px;
-    border-radius: 15px;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+    border-radius: 8px;
+    font-family: "Poppins",sans-serif;
+    display: none; 
     text-align: center;
 }
-#boxes #dialog {
-    width: 630px;
-    height: 450px;
-    padding: 10px;
-    background-color: #ffffff;
-    font-family: 'Segoe UI Light', sans-serif;
-    font-size: 15pt;
+.popup button{
+    display: block;
+    margin: auto;
+    background-color: transparent;
+    font-size: 30px;
+    color: #ffffff;
+		background: #03549a;
+		border-radius: 100%;
+		width: 40px;
+		height: 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
-#popupfoot {
-    font-size: 16pt;
-    position: fixed;
-    bottom: 600px;
-    right: 0px;
+.popup h2{
+	margin-top: -20px;
+}
+.popup p{
+    font-size: 14px;
+    text-align: justify;
+    margin: 20px 0;
+    line-height: 25px;
 }
 
     </style>
@@ -615,13 +625,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 </div>
 </div>
 
-  <div id="boxes">
-        <div id="dialog" class="window">
-           <div class="ism-slider" id="my-slider">
+<div class="popup">
+        <button id="close">&times;</button>
+        <div class="ism-slider" id="my-slider">
   <ol>
     <li>
       <img src="ism/image/slides/_u/1654421089377_976563.jpg">
-      <div class="ism-caption ism-caption-0">Band Edge</div>
+      <div class="ism-caption ism-caption-0">My slide caption text</div>
     </li>
     <li>
       <img src="ism/image/slides/_u/1654421345532_326433.jpg">
@@ -629,56 +639,28 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </li>
   </ol>
 </div>
-            <div id="popupfoot"> <a href="#" class="close agree">close</a> </div>
-        </div>
-        <div id="mask"></div>
+
     </div>
-
-
 
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/main.js"></script>
 
 <!--popup-->
- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
-    <script type="text/javascript">
-	
-	$(document).ready(function() {
-            var id = '#dialog';
-            //Get the screen height and width
-            var maskHeight = $(document).height();
-            var maskWidth = $(window).width();
-            //Set heigth and width to mask to fill up the whole screen
-            $('#mask').css({
-                'width': maskWidth,
-                'height': maskHeight
-            });
-            //transition effect
-            $('#mask').fadeIn(500);
-            $('#mask').fadeTo("slow", 0.9);
-            //Get the window height and width
-            var winH = $(window).height();
-            var winW = $(window).width();
-            //Set the popup window to center
-            $(id).css('top', winH / 2 - $(id).height() / 2);
-            $(id).css('left', winW / 2 - $(id).width() / 2);
-            //transition effect
-            $(id).fadeIn(2000);
-            //if close button is clicked
-            $('.window .close').click(function(e) {
-                //Cancel the link behavior
-                e.preventDefault();
-                $('#mask').hide();
-                $('.window').hide();
-            });
-            //if mask is clicked
-            $('#mask').click(function() {
-                $(this).hide();
-                $('.window').hide();
-            });
-        });
-	
+ <script type="text/javascript">
+window.addEventListener("load", function(){
+    setTimeout(
+        function open(event){
+            document.querySelector(".popup").style.display = "block";
+        },
+        2000 
+    )
+});
+
+
+document.querySelector("#close").addEventListener("click", function(){
+    document.querySelector(".popup").style.display = "none";
+});
     </script>
 
 <script>
